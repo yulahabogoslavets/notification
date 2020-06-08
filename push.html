@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>push</title>
+</head>
+<body>
+<input type="button" onclick="notifSet()" value="Notification">
+
+<script>
+    function notifyMe(){
+        let notification = new Notification("Is jet works",{
+            tag: "ache-mail",
+            body: "pause"
+        });
+    }
+
+    function notifSet(){
+        if (!("Notification" in window)){
+            alert("our brawser is not available ")
+        } else if (Notification.permission === "granted"){
+            setTimeout(notifyMe, 2000);
+        } else if (Notification.permission !== "denied"){
+            Notification.requestPermission(function(permission){
+                if (!('permission' in Notification)){
+                    if (!('permisssion' in Notification)){
+                        Notification.permission = permission;
+                    }
+                    if (permission === "granted"){
+                        setTimeout(notifyMe, 2000);
+                    }
+                }
+            })
+        }
+    }
+</script>
+</body>
+</html>
